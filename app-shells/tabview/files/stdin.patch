@@ -1,0 +1,42 @@
+From 549d84aaef34c9fefbd117746a530e2890b4a7c2 Mon Sep 17 00:00:00 2001
+From: Ryan Whittingham <ryanwhittingham89@gmail.com>
+Date: Sun, 24 Jan 2021 20:07:22 -0800
+Subject: [PATCH] Filename optional for using stdin
+
+---
+ bin/tabview | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/bin/tabview b/bin/tabview
+index 968f83b..d156331 100755
+--- a/bin/tabview
++++ b/bin/tabview
+@@ -30,7 +30,8 @@ def arg_parse():
+                                      "in a spreadsheet-like display. "
+                                      "Press F1 or '?' while running for a "
+                                      "list of available keybindings.")
+-    parser.add_argument('filename', help="File to read. Use '-' to read from "
++    parser.add_argument('filename', nargs='?', default=None,
++                        help="File to read. Leave blank or use '-' to read from "
+                         "the standard input instead.")
+     parser.add_argument('--encoding', '-e', help="Encoding, if required.  "
+                         "If the file is UTF-8, Latin-1(iso8859-1) or a few "
+@@ -101,10 +102,12 @@ if __name__ == '__main__':
+     args, extra = arg_parse()
+     pos_plus = [i for i in extra if i.startswith('+')]
+     start_pos = start_position(args.start_pos, pos_plus)
+-    if args.filename != '-':
+-        data = args.filename
+-    else:
++    if not args.filename:
++        data = fixup_stdin()
++    elif args.filename == '-':
+         data = fixup_stdin()
++    else:
++        data = args.filename
+     view(data, enc=args.encoding, start_pos=start_pos,
+          column_width=args.width, double_width=args.double_width,
+          delimiter=args.delimiter, quoting=args.quoting, quote_char=args.quote_char)
+-- 
+2.30.0
+
