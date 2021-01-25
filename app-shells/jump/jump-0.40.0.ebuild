@@ -1,14 +1,13 @@
 EAPI=7
 
-GOLANG_PKG_IMPORTPATH="github.com/gsamokovarov"
+DESCRIPTION="Jump helps you navigate faster by learning your habits"
+HOMEPAGE="https://github.com/gsamokovarov/jump"
+
 GOLANG_PKG_ARCHIVEPREFIX="v"
-GOLANG_PKG_BUILDPATH="/bin/${PN}"
-GOLANG_PKG_HAVE_TEST=0
+GOLANG_PKG_IMPORTPATH="github.com/gsamokovarov"
 
 inherit golang-single
 
-DESCRIPTION="Jump helps you navigate faster by learning your habits."
-
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm x86"
+KEYWORDS="amd64"
