@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python{3_6,3_7,3_8,3_9} )
 
 inherit distutils-r1 git-r3
 
-DESCRIPTION="Python implementation of the Qemu Monitor Protocol (QMP)"
+DESCRIPTION="A curses command-line CSV and list (tabular data) viewer"
 HOMEPAGE="https://github.com/Tabviewer/tabview"
 EGIT_REPO_URI="https://github.com/Tabviewer/tabview.git"
 
